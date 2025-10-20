@@ -20,6 +20,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { PrhasalInput, prhasalSchema } from "@/schema/prhasal";
 import { createPrhasal } from "@/actions/prhasals";
+import Link from "next/link";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -45,6 +46,7 @@ export default function PrhasalForm() {
         await createPrhasal(values);
         toast.success("Your prhasal was sent successfully!");
         form.reset();
+        router.push("/");
       } catch (error: any) {
         toast.error("Something went wrong, please try again!");
         console.error("Failed to send message:", error);
@@ -101,19 +103,24 @@ export default function PrhasalForm() {
               )}
             />
 
-            <Button
-              disabled={isPending}
-              type="submit"
-              className="cursor-pointer"
-            >
-              {isPending ? (
-                <>
-                  <Loader2 size={16} className="animate-spin" /> Sending...
-                </>
-              ) : (
-                "Send Prhasal"
-              )}
-            </Button>
+            <div className="space-x-2">
+              <Button
+                disabled={isPending}
+                type="submit"
+                className="cursor-pointer"
+              >
+                {isPending ? (
+                  <>
+                    <Loader2 size={16} className="animate-spin" /> Sending...
+                  </>
+                ) : (
+                  "Send Prhasal"
+                )}
+              </Button>
+              <Button>
+                <Link href="/">Cancel</Link>
+              </Button>
+            </div>
           </form>
         </Form>
       </div>

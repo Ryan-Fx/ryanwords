@@ -3,7 +3,7 @@
 import { db } from "@/drizzle/db";
 import { prhasalsTable } from "@/drizzle/schema";
 import { PrhasalInput, prhasalSchema } from "@/schema/prhasal";
-import { desc, eq } from "drizzle-orm";
+import { desc, eq, count } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 
 export async function createPrhasal(formData: PrhasalInput) {
@@ -30,6 +30,42 @@ export async function getPrhasals() {
     return prhasals;
   } catch (error: any) {
     throw new Error(`Error getting prhasals: ${error.message || error} `);
+  }
+}
+
+export async function getPrhasalsPaginated(limit: number, offset: number) {
+  try {
+    const data = await db
+      .select()
+      .from(prhasalsTable)
+      .orderBy(desc(prhasalsTable.createdAt))
+      .limit(limit)
+      .offset(offset);
+
+    console.log(
+      "✅ Rows fetched:",
+      data.length,
+      "limit:",
+      limit,
+      "offset:",
+      offset
+    );
+
+    return data;
+  } catch (error) {
+    console.error("❌ Error fetching prhasals:", error);
+    throw new Error("Failed to fetch prhasals");
+  }
+}
+
+export async function getTotalCount() {
+  try {
+    const [{ total }] = await db.select({ total: count() }).from(prhasalsTable);
+    console.log("📊 Total rows in database:", total);
+    return total;
+  } catch (error) {
+    console.error("❌ Error counting prhasals:", error);
+    throw new Error("Failed to get total count");
   }
 }
 
