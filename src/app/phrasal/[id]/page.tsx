@@ -2,6 +2,7 @@ import { getPhrasalById } from "@/actions/prhasals";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
+import DeletePhrasal from "@/components/delete-phrasal";
 
 export default async function PrhasalDetail({
   params,
@@ -45,9 +46,12 @@ export default async function PrhasalDetail({
           <p className="text-slate-300 font-light">{data.indo}</p>
         </div>
       </div>
-      <Button className="w-full" asChild>
-        <Link href="/">Go Back Home</Link>
-      </Button>
+      <div className="flex justify-between">
+        <DeletePhrasal id={Number(id)} />
+        <Button className="" asChild>
+          <Link href="/">Go Back Home</Link>
+        </Button>
+      </div>
     </div>
   );
 }

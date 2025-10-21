@@ -40,12 +40,12 @@ export default function DeletePhrasal({ id }: idProps) {
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button
-          variant={"outline"}
+          variant={"default"}
           type="button"
           title="Delete"
           className="cursor-pointer"
         >
-          <BsTrash size={20} className="text-primary" />
+          Delete Phrasal
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
