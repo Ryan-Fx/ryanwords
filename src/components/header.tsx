@@ -17,7 +17,7 @@ export default function Header() {
           className="bg-sky-600 hover:bg-sky-700 w-full text-lg font-light rounded-full"
           asChild
         >
-          <Link href="/add">Add New Phrasal 🚀</Link>
+          <Link href="/add">Add New Phrasal</Link>
         </Button>
       )}
     </header>
