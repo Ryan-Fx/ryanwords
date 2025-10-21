@@ -43,7 +43,7 @@ export default function DeletePhrasal({ id }: idProps) {
           variant={"default"}
           type="button"
           title="Delete"
-          className="cursor-pointer"
+          className="cursor-pointer bg-rose-600 hover:bg-rose-700"
         >
           Delete Phrasal
         </Button>

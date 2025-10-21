@@ -18,7 +18,7 @@ export default async function PrhasalDetail({
 
   return (
     <div className="bg-foreground text-primary-foreground min-h-screen px-4 py-6 space-y-6">
-      <h1 className="text-center text-2xl font-semibold text-cyan-400 capitalize">
+      <h1 className="text-center text-2xl font-semibold text-purple-500 capitalize">
         My phrasal detail!
       </h1>
 
@@ -34,13 +34,13 @@ export default async function PrhasalDetail({
       </p>
       <div className="space-y-4 text-xl text-justify">
         <div className="bg-secondary-foreground p-4 rounded-sm">
-          <p className="text-teal-400 font-semibold underline decoration-wavy tracking-wide">
+          <p className="text-fuchsia-400 font-semibold tracking-wide italic">
             In english :{" "}
           </p>
           <p className="text-gray-300 font-light">{data.english}</p>
         </div>
         <div className="bg-secondary-foreground p-4 rounded-sm">
-          <p className="text-rose-400 font-semibold underline decoration-wavy tracking-wide">
+          <p className="text-pink-400 font-semibold tracking-wide italic">
             In indonesian :{" "}
           </p>
           <p className="text-slate-300 font-light">{data.indo}</p>
@@ -48,7 +48,7 @@ export default async function PrhasalDetail({
       </div>
       <div className="flex justify-between">
         <DeletePhrasal id={Number(id)} />
-        <Button className="" asChild>
+        <Button className="bg-purple-600 hover:bg-purple-700" asChild>
           <Link href="/">Go Back Home</Link>
         </Button>
       </div>

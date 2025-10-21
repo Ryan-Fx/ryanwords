@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import PrhasalCard from "./prhasal-card";
 import { getPrhasalsPaginated } from "@/actions/prhasals";
+import { Loader2 } from "lucide-react";
 
 interface PhrasalType {
   id: number;
@@ -46,9 +47,9 @@ export default function PhrasalListAnimated({
       {phrasals.map((phrasal) => (
         <motion.div
           key={phrasal.id}
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.5 }}
         >
           <PrhasalCard phrasal={phrasal} />
         </motion.div>
@@ -59,15 +60,24 @@ export default function PhrasalListAnimated({
           <Button
             onClick={handleLoadMore}
             disabled={isPending}
-            className="w-full max-w-sm cursor-pointer"
+            className="w-full bg-fuchsia-600 hover:bg-fuchsia-600 cursor-pointer"
           >
-            {isPending ? "Loading..." : "See more"}
+            {isPending ? (
+              <>
+                <Loader2 className="animate-spin" /> Loading
+              </>
+            ) : (
+              "See more"
+            )}
           </Button>
         </div>
       ) : (
         phrasals.length > 0 && (
-          <p className="text-center text-muted-foreground py-4">
-            You’ve reached the end 🎉
+          <p className="text-center py-4">
+            <span className="bg-fuchsia-600 px-5 py-1 rounded-full">
+              {" "}
+              You’ve reached the end! 😎
+            </span>
           </p>
         )
       )}
