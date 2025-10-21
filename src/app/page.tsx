@@ -13,27 +13,16 @@ export default async function Home() {
   ]);
 
   return (
-    <div className="bg-foreground text-primary-foreground min-h-screen space-y-6 p-4 lg:p-10">
-      <header className="text-center space-y-2">
-        <h1 className="lg:text-3xl text-2xl font-semibold text-slate-50">
-          Ryan English Phrasals!
-        </h1>
-
-        <Button asChild>
-          <Link
-            href="/add"
-            className="text-muted-foreground text-sm lg:text-base"
-          >
-            Add New Phrasal
-          </Link>
-        </Button>
-      </header>
-
+    <div className="bg-foreground text-primary-foreground min-h-screen px-2 py-6 lg:py-10 lg:px-10">
       <section>
-        <PhrasalListAnimated
-          initialData={initialData}
-          totalCount={totalCount}
-        />
+        {initialData.length == 0 ? (
+          <p className="text-center">There is no phrasal. Please add one</p>
+        ) : (
+          <PhrasalListAnimated
+            initialData={initialData}
+            totalCount={totalCount}
+          />
+        )}
       </section>
     </div>
   );

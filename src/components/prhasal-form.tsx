@@ -44,9 +44,9 @@ export default function PrhasalForm() {
     startTransition(async () => {
       try {
         await createPrhasal(values);
-        toast.success("Your prhasal was sent successfully!");
+        toast.success("Nice! Your prhasal has been created!😎");
         form.reset();
-        router.push("/");
+        router.refresh();
       } catch (error: any) {
         toast.error("Something went wrong, please try again!");
         console.error("Failed to send message:", error);
@@ -118,7 +118,7 @@ export default function PrhasalForm() {
                 )}
               </Button>
               <Button>
-                <Link href="/">Cancel</Link>
+                <Link href="/">Go Back Home</Link>
               </Button>
             </div>
           </form>

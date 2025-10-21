@@ -3,7 +3,6 @@
 import { useState, useTransition } from "react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-
 import PrhasalCard from "./prhasal-card";
 import { getPrhasalsPaginated } from "@/actions/prhasals";
 

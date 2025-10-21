@@ -69,11 +69,25 @@ export async function getTotalCount() {
   }
 }
 
+export async function getPhrasalById(id: number) {
+  try {
+    const [prhasal] = await db
+      .select()
+      .from(prhasalsTable)
+      .where(eq(prhasalsTable.id, id))
+      .limit(1);
+
+    return prhasal ?? null;
+  } catch (error: any) {
+    throw new Error(`Error getting prhasal: ${error.message || error} `);
+  }
+}
+
 export async function deletePrhasal(id: number) {
   try {
     await db.delete(prhasalsTable).where(eq(prhasalsTable.id, id));
-    revalidatePath("/message");
+    revalidatePath("/");
   } catch (error: any) {
-    throw new Error(`Error deleting message: ${error.message || error} `);
+    throw new Error(`Error deleting prhasal: ${error.message || error} `);
   }
 }
