@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import PrhasalCard from "./prhasal-card";
 import { getPrhasalsPaginated } from "@/actions/prhasals";
 import { Loader2 } from "lucide-react";
+import SearchBar from "./search-bar";
 
 interface PhrasalType {
   id: number;
@@ -27,9 +28,11 @@ export default function PhrasalListAnimated({
 }: Props) {
   const [phrasals, setPhrasals] = useState<PhrasalType[]>(initialData);
   const [isPending, startTransition] = useTransition();
+  const [isSearching, setIsSearching] = useState(false);
 
-  const hasMore = phrasals.length < totalCount;
+  const hasMore = !isSearching && phrasals.length < totalCount;
 
+  // 🧭 Load More handler
   async function handleLoadMore() {
     startTransition(async () => {
       try {
@@ -42,25 +45,63 @@ export default function PhrasalListAnimated({
     });
   }
 
+  // 🔍 Diterima dari SearchBar
+  const handleSearchResults = (results: PhrasalType[]) => {
+    setPhrasals(results);
+    setIsSearching(true);
+  };
+
+  const handleSearchStart = () => {
+    setIsSearching(true);
+  };
+
+  // 🔁 Reset ke data awal (ketika query dikosongkan)
+  const handleResetToInitial = () => {
+    startTransition(async () => {
+      const data = await getPrhasalsPaginated(LIMIT, 0);
+      setPhrasals(data);
+      setIsSearching(false);
+    });
+  };
+
   return (
     <div className="space-y-4">
+      {/* Search Bar */}
+      <SearchBar
+        onSearchResults={handleSearchResults}
+        onSearchStart={handleSearchStart}
+        onResetToInitial={handleResetToInitial} // ✅ Tambahan penting
+      />
+
+      <p className="text-center text-lg capitalize pt-2 font-light">
+        List of my phrasals
+      </p>
+
+      {/* List of phrasals */}
+      {phrasals.length === 0 && (
+        <p className="text-center text-muted-foreground mt-4">
+          No results found.
+        </p>
+      )}
+
       {phrasals.map((phrasal) => (
         <motion.div
           key={phrasal.id}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.4 }}
         >
           <PrhasalCard phrasal={phrasal} />
         </motion.div>
       ))}
 
-      {hasMore ? (
+      {/* Load more */}
+      {hasMore && (
         <div className="flex justify-center">
           <Button
             onClick={handleLoadMore}
             disabled={isPending}
-            className="w-full bg-fuchsia-600 hover:bg-fuchsia-600 cursor-pointer"
+            className="w-full bg-fuchsia-600 hover:bg-fuchsia-600"
           >
             {isPending ? (
               <>
@@ -71,15 +112,14 @@ export default function PhrasalListAnimated({
             )}
           </Button>
         </div>
-      ) : (
-        phrasals.length > 0 && (
-          <p className="text-center py-4">
-            <span className="bg-fuchsia-600 px-5 py-1 rounded-full">
-              {" "}
-              You’ve reached the end! 😎
-            </span>
-          </p>
-        )
+      )}
+
+      {!hasMore && !isSearching && phrasals.length > 0 && (
+        <p className="text-center py-4">
+          <span className="bg-fuchsia-600 px-5 py-1 rounded-full">
+            You’ve reached the end! 😎
+          </span>
+        </p>
       )}
     </div>
   );

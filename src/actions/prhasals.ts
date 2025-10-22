@@ -3,7 +3,7 @@
 import { db } from "@/drizzle/db";
 import { prhasalsTable } from "@/drizzle/schema";
 import { PrhasalInput, prhasalSchema } from "@/schema/prhasal";
-import { desc, eq, count } from "drizzle-orm";
+import { desc, eq, count, ilike, or } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 
 export async function createPrhasal(formData: PrhasalInput) {
@@ -89,5 +89,31 @@ export async function deletePrhasal(id: number) {
     revalidatePath("/");
   } catch (error: any) {
     throw new Error(`Error deleting prhasal: ${error.message || error} `);
+  }
+}
+
+export async function searchPrhasals(
+  query: string,
+  limit: number,
+  offset: number
+) {
+  try {
+    const data = await db
+      .select()
+      .from(prhasalsTable)
+      .where(
+        or(
+          ilike(prhasalsTable.english, `%${query}%`),
+          ilike(prhasalsTable.indo, `%${query}%`)
+        )
+      )
+      .orderBy(desc(prhasalsTable.createdAt))
+      .limit(limit)
+      .offset(offset);
+
+    return data;
+  } catch (error: any) {
+    console.error("❌ Error searching phrasals:", error);
+    throw new Error(`Error searching phrasals: ${error.message || error}`);
   }
 }
