@@ -101,7 +101,7 @@ export default function PhrasalListAnimated({
           <Button
             onClick={handleLoadMore}
             disabled={isPending}
-            className="w-full bg-fuchsia-600 hover:bg-fuchsia-600"
+            className="w-full bg-fuchsia-600 hover:bg-fuchsia-600 cursor-pointer"
           >
             {isPending ? (
               <>

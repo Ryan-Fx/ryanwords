@@ -73,7 +73,7 @@ export default function PrhasalForm() {
                     <Textarea
                       rows={20}
                       className="ring-1 ring-cyan-500 min-h-16"
-                      placeholder="Just type whatever you want lol"
+                      placeholder="Just type whatever you want"
                       {...field}
                     />
                   </FormControl>
@@ -88,12 +88,12 @@ export default function PrhasalForm() {
               name="indo"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Indo</FormLabel>
+                  <FormLabel>Indonesian</FormLabel>
                   <FormControl>
                     <Textarea
                       rows={20}
                       className="ring-1 ring-cyan-500 min-h-16"
-                      placeholder="Translate it to indo"
+                      placeholder="Translate it to Indonesian"
                       {...field}
                     />
                   </FormControl>
@@ -103,22 +103,22 @@ export default function PrhasalForm() {
               )}
             />
 
-            <div className="space-x-2">
+            <div className="flex justify-between">
+              <Button className="bg-purple-500 hover:bg-purple-600">
+                <Link href="/">Go Back Home</Link>
+              </Button>
               <Button
                 disabled={isPending}
                 type="submit"
-                className="cursor-pointer"
+                className="cursor-pointer bg-cyan-500 hover:bg-cyan-600"
               >
                 {isPending ? (
                   <>
-                    <Loader2 size={16} className="animate-spin" /> Sending...
+                    <Loader2 size={16} className="animate-spin" /> Saving...
                   </>
                 ) : (
-                  "Send Prhasal"
+                  "Save"
                 )}
-              </Button>
-              <Button>
-                <Link href="/">Go Back Home</Link>
               </Button>
             </div>
           </form>
