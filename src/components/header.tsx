@@ -9,7 +9,7 @@ import Link from "next/link";
 export default function Header() {
   const pathname = usePathname();
   return (
-    <header className="text-center fixed left-0 top-0 z-20 right-0 rounded-lg p-4 m-4 bg-[url('/assets/bgtext.png')] bg-cover bg-center bg-no-repeat">
+    <header className="text-center fixed left-0 top-0 z-20 right-0 rounded-bl-full rounded-tl-full rounded-br-full p-4 m-4 bg-[url('/assets/bgtext.png')] bg-cover bg-center bg-no-repeat">
       <div className="flex items-center justify-between">
         <div className="flex items-center justify-start space-x-4">
           <Link href="/">
@@ -24,7 +24,7 @@ export default function Header() {
           <h1 className="text-lg lg:text-4xl bg-linear-to-r font-semibold from-purple-500 via-yellow-400 to-yellow-400 bg-clip-text text-transparent">
             <Typewriter
               words={[
-                "Hi! Bella here!",
+                "Hi! Bella here!✨",
                 "Learn new vocabularies everyday!",
                 "Make new sentences everyday!",
                 "Learn new phrases!",

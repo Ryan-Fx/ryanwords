@@ -116,7 +116,7 @@ export default function PhrasalListAnimated({
 
       {!hasMore && !isSearching && phrasals.length > 0 && (
         <p className="text-center py-4">
-          <span className="bg-fuchsia-600 px-5 py-1 rounded-full">
+          <span className="bg-fuchsia-600 px-5 py-2 rounded-full">
             You’ve reached the end! 😎
           </span>
         </p>

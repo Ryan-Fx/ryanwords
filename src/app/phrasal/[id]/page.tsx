@@ -3,18 +3,36 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
 import DeletePhrasal from "@/components/delete-phrasal";
+import { auth } from "@clerk/nextjs/server";
 
 export default async function PrhasalDetail({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
+  const { userId } = await auth();
   const { id } = await params;
 
   const data = await getPhrasalById(Number(id));
 
   const createdAt = new Date(data.createdAt!);
   const timeAgo = formatDistanceToNow(createdAt, { addSuffix: true });
+
+  if (userId !== process.env.OWNER_ID) {
+    return (
+      <main className="min-h-screen max-w-3xl mx-auto p-6 flex items-center justify-center">
+        <div>
+          <h1 className="text-2xl text-muted-foreground font-semibold mb-4">
+            Unauthorized
+          </h1>
+          <p>Sorry, you are not allowed to view this page.</p>
+          <Button asChild variant="default">
+            <Link href="/">Go back home</Link>
+          </Button>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <div className="text-primary-foreground pt-[170px] lg:pt-[210px] min-h-screen px-4 py-6 space-y-6">
