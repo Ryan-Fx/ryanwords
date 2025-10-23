@@ -13,7 +13,7 @@ export default async function Home() {
   ]);
 
   return (
-    <div className="text-primary-foreground pt-[170px] relative lg:pt-[210px] min-h-screen px-4 py-6  lg:px-16">
+    <div className="text-primary-foreground pt-40 relative lg:pt-[210px] min-h-screen px-4 py-6  lg:px-16">
       <section className="space-y-4">
         <div className="flex justify-center">
           <Button
