@@ -3,7 +3,7 @@ import React from "react";
 
 export default function LoginPage() {
   return (
-    <main className="flex justify-center items-center h-screen bg-foreground">
+    <main className="flex justify-center items-center h-screen bg-foreground pt-[170px] lg:pt-[210px]">
       {/* <Image src="/assets/logo.svg" width={100} height={100} alt="Logo" /> */}
       <div>
         <SignIn />

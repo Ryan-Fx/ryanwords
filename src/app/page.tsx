@@ -2,6 +2,7 @@ import { getPrhasalsPaginated, getTotalCount } from "@/actions/prhasals";
 import PhrasalListAnimated from "@/components/prhasal-list-animated";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { FaCircleUp } from "react-icons/fa6";
 
 export default async function Home() {
   const LIMIT = 5;
@@ -12,7 +13,7 @@ export default async function Home() {
   ]);
 
   return (
-    <div className="text-primary-foreground pt-[170px] lg:pt-[210px] min-h-screen px-4 py-6  lg:px-16">
+    <div className="text-primary-foreground pt-[170px] relative lg:pt-[210px] min-h-screen px-4 py-6  lg:px-16">
       <section className="space-y-4">
         <div className="flex justify-center">
           <Button
