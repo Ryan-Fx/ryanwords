@@ -17,9 +17,9 @@ export default async function PrhasalDetail({
   const timeAgo = formatDistanceToNow(createdAt, { addSuffix: true });
 
   return (
-    <div className="bg-foreground text-primary-foreground min-h-screen px-4 py-6 space-y-6">
-      <h1 className="text-center text-2xl font-semibold text-purple-500 capitalize">
-        My phrasal detail!
+    <div className="text-primary-foreground pt-[170px] lg:pt-[210px] min-h-screen px-4 py-6 space-y-6">
+      <h1 className="text-center text-2xl font-semibold tracking-tighter text-purple-500 capitalize">
+        My phrasal detail 🎉
       </h1>
 
       {/* date */}

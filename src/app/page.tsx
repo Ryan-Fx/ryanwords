@@ -12,11 +12,11 @@ export default async function Home() {
   ]);
 
   return (
-    <div className="bg-foreground text-primary-foreground min-h-screen px-4 py-6 lg:py-14 lg:px-16">
+    <div className="text-primary-foreground pt-[170px] lg:pt-[210px] min-h-screen px-4 py-6  lg:px-16">
       <section className="space-y-4">
         <div className="flex justify-center">
           <Button
-            className="bg-pink-600 hover:bg-pink-700 w-full text-lg font-light rounded-full"
+            className="bg-pink-500 hover:bg-pink-600 w-full text-lg font-light py-5 lg:py-6 rounded-full"
             asChild
           >
             <Link href="/add">Add New Phrasal</Link>

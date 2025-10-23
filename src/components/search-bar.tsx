@@ -59,7 +59,7 @@ export default function SearchBar({
         placeholder="Type to search phrasals..."
         value={query}
         onChange={handleChange}
-        className="w-full pl-10"
+        className="w-full pl-10 ring-1 ring-fuchsia-500"
       />
       <SearchSlashIcon className="absolute left-2 top-1/2 text-slate-300 -translate-y-1/2" />
       {loading && (
