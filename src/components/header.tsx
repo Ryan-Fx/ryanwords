@@ -14,17 +14,17 @@ export default function Header() {
         <div className="flex items-center justify-start space-x-4">
           <Link href="/">
             <Image
-              src="/assets/bellalogo.jpg"
+              src="/assets/okeejoss.png"
               width={130}
               height={130}
               alt="Logo"
-              className="rounded-full size-20 animate-spin lg:size-[130px] border-2 lg:border-4 border-pink-500"
+              className="rounded-full size-20 lg:size-[130px] border-2 lg:border-4 border-pink-500"
             />
           </Link>
           <h1 className="text-md lg:text-4xl bg-linear-to-r font-semibold from-purple-500 via-yellow-400 to-yellow-400 bg-clip-text text-transparent">
             <Typewriter
               words={[
-                "Hi! Bella here!✨",
+                "Hi! Ryan here!✨",
                 "Learn new vocabularies!",
                 "Make new sentences!✨",
                 "Learn new phrases!✨",

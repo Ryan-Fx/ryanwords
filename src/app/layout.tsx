@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Bella | Personal English Phrase Collection",
+  title: "Ryan's English Phrases",
   description:
     "My personal space for learning and storing English phrases. Collecting words, phrases, and meaning — one sentence at a time.",
 };
