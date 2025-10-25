@@ -45,15 +45,14 @@ export default function DeletePhrasal({ id }: idProps) {
           title="Delete"
           className="cursor-pointer bg-rose-600 hover:bg-rose-700"
         >
-          Delete Phrasal
+          Delete
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete the
-            message and remove it from the database.
+            This will permanently delete your sentence.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
@@ -66,7 +65,7 @@ export default function DeletePhrasal({ id }: idProps) {
             onClick={() => handleDelete(id)}
             className="cursor-pointer"
           >
-            Continue
+            Yes
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

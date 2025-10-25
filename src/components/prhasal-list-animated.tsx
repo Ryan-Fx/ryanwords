@@ -7,6 +7,13 @@ import PrhasalCard from "./prhasal-card";
 import { getPrhasalsPaginated } from "@/actions/prhasals";
 import { Loader2 } from "lucide-react";
 import SearchBar from "./search-bar";
+import { Poppins } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+});
 
 interface PhrasalType {
   id: number;
@@ -15,7 +22,7 @@ interface PhrasalType {
   createdAt: Date | null;
 }
 
-const LIMIT = 4;
+const LIMIT = 15;
 
 interface Props {
   initialData: PhrasalType[];
@@ -73,14 +80,19 @@ export default function PhrasalListAnimated({
         onResetToInitial={handleResetToInitial} // ✅ Tambahan penting
       />
 
-      <p className="text-center text-lg capitalize pt-2 font-light">
-        List of my phrasals
+      <p
+        className={cn(
+          "text-center text-2xl lg:text-3xl text-sky-400 pt-4 lg:pt-6",
+          poppins.className
+        )}
+      >
+        List of my sentences 🎉
       </p>
 
       {/* List of phrasals */}
       {phrasals.length === 0 && (
-        <p className="text-center text-muted-foreground mt-4">
-          No results found.
+        <p className="text-center text-slate-400 tracking-wider mt-4 text-xl lg:text-2xl">
+          No results found 😔
         </p>
       )}
 
@@ -101,7 +113,7 @@ export default function PhrasalListAnimated({
           <Button
             onClick={handleLoadMore}
             disabled={isPending}
-            className="w-full bg-fuchsia-600 hover:bg-fuchsia-600 cursor-pointer"
+            className="w-full bg-fuchsia-600 lg:py-6 lg:text-xl hover:bg-fuchsia-700 cursor-pointer"
           >
             {isPending ? (
               <>
@@ -116,7 +128,7 @@ export default function PhrasalListAnimated({
 
       {!hasMore && !isSearching && phrasals.length > 0 && (
         <p className="text-center py-4">
-          <span className="bg-fuchsia-600 px-5 py-2 rounded-full">
+          <span className="bg-fuchsia-600 px-5 py-2 lg:text-lg rounded-full">
             You’ve reached the end! 😎
           </span>
         </p>

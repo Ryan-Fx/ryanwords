@@ -72,7 +72,7 @@ export default function PrhasalForm() {
                   <FormControl>
                     <Textarea
                       rows={20}
-                      className="ring-1 ring-cyan-500 min-h-16"
+                      className="ring-1 ring-cyan-500 min-h-28"
                       placeholder="Just type whatever you want"
                       {...field}
                     />
@@ -92,7 +92,7 @@ export default function PrhasalForm() {
                   <FormControl>
                     <Textarea
                       rows={20}
-                      className="ring-1 ring-pink-500 min-h-16"
+                      className="ring-1 ring-pink-500 min-h-28"
                       placeholder="Translate it to Indonesian"
                       {...field}
                     />

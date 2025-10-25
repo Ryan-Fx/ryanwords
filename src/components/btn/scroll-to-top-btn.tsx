@@ -17,7 +17,7 @@ export default function ScrollToTopButton() {
           className="fixed bottom-7 right-6 lg:bottom-14 lg:right-10 animate-bounce z-50"
         >
           <Button
-            className="rounded-full size-9 border border-white bg-pink-500 hover:bg-pink-600 flex items-center justify-center"
+            className="rounded-full size-9 border border-white bg-pink-500 hover:bg-pink-600 flex items-center justify-center cursor-pointer"
             onClick={scrollToTop}
             aria-label="Scroll to top"
           >

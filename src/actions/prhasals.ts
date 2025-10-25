@@ -3,6 +3,7 @@
 import { db } from "@/drizzle/db";
 import { prhasalsTable } from "@/drizzle/schema";
 import { PrhasalInput, prhasalSchema } from "@/schema/prhasal";
+import { auth } from "@clerk/nextjs/server";
 import { desc, eq, count, ilike, or } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 
@@ -80,6 +81,31 @@ export async function getPhrasalById(id: number) {
     return prhasal ?? null;
   } catch (error: any) {
     throw new Error(`Error getting prhasal: ${error.message || error} `);
+  }
+}
+
+export async function updatePrhasal(id: number, formData: PrhasalInput) {
+  try {
+    const { userId } = await auth();
+    if (!userId) throw new Error("User not authenticated.");
+
+    const { success, data } = prhasalSchema.safeParse(formData);
+    if (!success) {
+      throw new Error("Validation failed");
+    }
+
+    await db
+      .update(prhasalsTable)
+      .set({
+        english: data.english,
+        indo: data.indo,
+      })
+      .where(eq(prhasalsTable.id, id));
+
+    // Revalidate homepage or list page
+    revalidatePath("/phrasal");
+  } catch (error: any) {
+    throw new Error(`Error updating prhasal: ${error.message || error}`);
   }
 }
 
