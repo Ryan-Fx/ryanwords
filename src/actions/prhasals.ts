@@ -103,7 +103,7 @@ export async function updatePrhasal(id: number, formData: PrhasalInput) {
       .where(eq(prhasalsTable.id, id));
 
     // Revalidate homepage or list page
-    revalidatePath("/phrasal");
+    revalidatePath("/");
   } catch (error: any) {
     throw new Error(`Error updating prhasal: ${error.message || error}`);
   }
